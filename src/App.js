@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRecoilState } from "recoil";
+import "./App.css";
+import { numState } from "./atom";
 
 function App() {
+  const [num, setNum] = useRecoilState(numState);
+  const up = () => {
+    setNum(num + 1);
+  };
+  const down = () => {
+    setNum(num - 1);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <span className="cal" onClick={down}>
+        -
+      </span>
+      <span className="num">{num}</span>
+      <span className="cal" onClick={up}>
+        +
+      </span>
     </div>
   );
 }
